@@ -101,10 +101,14 @@ input:focus {
   background-color: white;
  }
 
- .range-title {
-  font-size: 20px;
+ .form-title {
+  font-size: 22px;
   font-weight: 700;
   margin: 5px 0px 10px 5px;
+ }
+
+ .current-range {
+  font-size: 20px;
  }
 
 .min-range,
@@ -113,6 +117,10 @@ input:focus {
 }
 
 .form {
+  display: flex;
+}
+
+.info-input {
   display: flex;
 }
 
@@ -126,7 +134,7 @@ input:focus {
 }
 
 .update {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 label {
@@ -147,14 +155,14 @@ label {
 
 .align-scores {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .input {
   font-size: 20px;
-  padding-left: 3px;
   display: block;
   height: 45px;
+  margin: 5px;
 }
 
 .btn {
@@ -165,7 +173,7 @@ label {
   font-size: 20px;
   font-weight: 700;
   height: 45px;
-  padding: 11px;
+  padding: 10px 30px;
 }
 
 .btn:hover {
@@ -187,6 +195,14 @@ label {
   justify-content: space-between;
 }
 
+.guess-result1,
+.guess-result2 {
+  margin: 0;
+  font-size: 95px;
+  color: #dd1972;
+  font-weight: 800;
+}
+
 /*End left page styling*/
 
 /*Right page styling*/
@@ -200,6 +216,17 @@ label {
   text-align: center;
   background-color: white;
   margin-top: 15px;
+}
+
+.score-name1,
+.score-name2 {
+  font-size: 20px;
+  margin: 5px;
+}
+
+.current {
+  font-size: 20px;
+  margin: 5px;
 }
 
 hr {
@@ -315,11 +342,11 @@ hr {
     text-align: center;
   }
 
-  .header h1 {
+  .title {
     font-size: 42px;
   }
 
-  .header h2 {
+  .subtitle {
     font-size: 16px;
   }
 
@@ -331,7 +358,7 @@ hr {
     width: 65px;
   }
 
-  .button-group {
+  .btn-group {
     display: flex;
     flex-direction: column;
   }
