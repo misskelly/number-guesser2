@@ -4,11 +4,24 @@ var updateBtn = document.querySelector('.update');
 var currentMin = document.querySelector('.range-start');
 var currentMax = document.querySelector('.range-end');
 
-updateBtn.addEventListener('click', updateRange);
+updateBtn.addEventListener('click', setRange);
 
-function updateRange() {
-    currentMin.innerText = minRange.value;
-    currentMax.innerText = maxRange.value;
+
+
+
+function setRange() {
+    const min = parseInt(minRange.value, 10) || 1;
+    const max = parseInt(maxRange.value, 10) || 100;
+    currentMin.innerText = min;
+    currentMax.innerText = max;
+    console.log(min, max);
+    getSolution(min, max);
+}
+
+
+function getSolution(min, max) {
+    var solution = Math.floor(Math.random() * (max - min + 1) + min);
+    console.log(solution);
 }
 
 
