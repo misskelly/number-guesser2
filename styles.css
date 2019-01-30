@@ -116,6 +116,14 @@ input:focus {
   margin-right: 20px;
 }
 
+input:invalid {
+  border: 2px dashed #DD1972;
+}
+
+input:valid {
+  border: 2px solid black;
+}
+
 .form {
   display: flex;
 }
