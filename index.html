@@ -1,21 +1,92 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-  <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet" type="text/css"/>
-  <link href="./styles.css" rel="stylesheet" type="text/css"/>
-  <link href="https://fonts.googleapis.com/css?family=Mukta|Open+Sans:300,700,800" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Number Guesser></title>
-</head> 
-<body> 
-  <header>
-      <section class="header">
-        <h1 class="title"><strong>NUMBER</strong>GUESSER</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" rel="stylesheet" type="text/css"/>
+    <link href="./styles.css" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Mukta|Open+Sans:300,700,800" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Number Guesser></title>
+  </head>
+  <body>
+    <header class="header">
+      <section class="title">
+        <h1 class="title"><span class="number">NUMBER</span>GUESSER</h1>
         <h2 class="subtitle">ULTIMATE CHALLENGER EDITION</h2>
       </section>
     </header>
+    <section class="column-container">
+    <section class="column">
+      <article class="set-range">
+        <h4 class="range-title">Set Range</h4>
+        <form class="form">
+          <label class="input-label">Min Range
+            <input type="number" class="min-range input">
+          </label>
+        <label class="input-label">Max Range
+          <input type="number" class="max-range input">
+        </label>
+        <button type="button" class="update btn">UPDATE</button>
+      </form>
+    </article>
+    <article class="guess-form">
+      <p class="current-range">The Current Range is <span class="range-start">1</span> to <span class="range-end">100</span></p>
+        <form>
+          <h4 class="chall-title">Challenger 1</h4>
+            <label>Name
+              <input type="text" class="name1 input">
+            </label>
+          </div>
+            <label class="chall1-guess">Guess
+              <input type="number" class="guess1 input"></input>
+            </label>
+        <h4 class="chall-title">Challenger 2</h4>
+          <label class="chall2-name">Name
+            <input type="text" class="input name2">
+          </label>
+          <label class="chall2-guess">Guess
+            <input type="number" class="input guess2"></input>
+          </label>
+        <section class="btn-group">
+          <button class="btn" type="submit">SUBMIT GUESS</button>
+          <button class="btn" type="reset" disabled="true">RESET GAME</button>
+          <button class="btn" type="reset" disabled="true">CLEAR GAME</button>
+        </section>
+      </form>
+    </article>
+    <article class="left-cards score">
+      <h4 class="bold">Latest Score</h4>
+      <section class="align-scores">
+        <div class="chall1-score">
+          <h5 class="score-name1">Challenger 1 Name</h5>
+          <p>current guess</p>
+          <h1 class="guess-result1">0</h1>
+          <p class="guess-message1"></p>
+        </div>
+        <div class="chall2-score">
+          <h5 class="score-name2">Challenger 2 Name</h5>
+          <p>current guess</p>
+          <h1  class="guess-result2">0</h1>
+          <p class="guess-message2"></p>
+        </div>
+      </section>
+    </article>
+  </article>
+</section>
+    <section class="column right-column">
+        <article class="score-card">
+          <p class="card-title">CHALLENGER 2 NAME<span> vs</span> 
+          CHALLENGER 2 NAME</p>
+          <hr>
+          <h2 class="chall2-card">CHALLENGER 2 NAME</h2>
+          <p class="winner">is the WINNER</p>
+          <hr>
+          <section class="score-card-bottom">
+          <section class="score-card-item"><strong>0</strong> GUESSES</section>
+        <section class="score-card-item"><strong>0</strong> MINUTES</section>
+        <button class="score-card-item delete-btn" type="reset">X</button>
+      </section>
+    </article>
+  </section>
   <script type="text/javascript" src="main.js"></script>
-</body> 
+</body>
 </html>
-
-

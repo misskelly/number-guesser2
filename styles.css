@@ -1,1 +1,351 @@
+* {
+  box-sizing: border-box;
+}
 
+body {
+  font-family: Open Sans;
+  color: #6e6e6e;
+  margin: 0;
+  background-color: #f7f7f7;
+}
+
+input {
+  border: #efefef solid 3px;
+  font-size: 20px;
+  padding-left: 3px;
+}
+
+input:focus {
+  outline: none;
+}
+
+/*Header styling*/
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 170px;
+  margin: 0;
+  background-color: #404041;
+}
+
+.title {
+  font-size: 68px;
+  font-weight: 300;
+  margin: 0 auto;
+  padding: 0;
+  color: #DD1972
+}
+
+.subtitle {
+  color: white;
+  font-size: 25px;
+  font-weight: 300;
+  margin: 0;
+  text-align: center;
+  position: relative;
+}
+
+.subtitle::before {
+  content: "";
+  background: white;
+  height: 2px;
+  width: 100px;
+  position: absolute;
+  left: 2px;
+  top: 50%;
+}
+
+.subtitle::after {
+  content: "";
+  background: white;
+  height: 2px;
+  width: 100px;
+  position: absolute;
+  right: 2px;
+  top: 50%;
+}
+
+.number {
+  font-weight: 800;
+}
+
+/*End header styling
+*/
+
+/*Left page styling*/
+
+.column-container {
+  display: flex;
+}
+.column {
+  padding: 1%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.left-cards {
+  border: #efefef solid 2px;
+  margin-top: 15px;
+  padding: 20px;
+  padding-top: 15px;
+  background: white;
+}
+
+.set-range {
+  border: 2px #d0d2d3 solid;
+  padding: 15px;
+  background-color: white;
+ }
+
+ .range-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 5px 0px 10px 5px;
+ }
+
+.min-range,
+.max-range {
+  margin-right: 20px;
+}
+
+.form {
+  display: flex;
+}
+
+.guess-form {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px #d0d2d3;
+  background-color: white;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+.update {
+  margin-top: 15px;
+}
+
+label {
+  display: block;
+}
+
+.chall1-score, 
+.chall2-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;  
+}
+
+.chall1-score {
+  border-right: solid #efefef 3px;
+}
+
+.align-scores {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  font-size: 20px;
+  padding-left: 3px;
+  display: block;
+  height: 45px;
+}
+
+.btn {
+  background-color: #d0d2d3;   
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  height: 45px;
+  padding: 11px;
+}
+
+.btn:hover {
+  background-color: #DD1972;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: #6e6e6e;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-group {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+/*End left page styling*/
+
+/*Right page styling*/
+
+.right-column {
+  background-color: #d0d2d3;
+}
+
+.score-card {
+  border: solid 2px grey;
+  text-align: center;
+  background-color: white;
+  margin-top: 15px;
+}
+
+hr {
+  width: 90%;
+}
+
+.range-start, 
+.range-end {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.score-card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  padding-bottom: 10px;
+}
+
+.right-column {
+  background-color: #d0d2d3;
+}
+
+.score-card-item {
+  display: flex;
+  font-size: 20px;
+}
+
+.card-title {
+  font-variant-caps: small-caps;
+  font-weight: bold;
+}
+
+.score-card-item strong {
+  margin-right: 5px;
+}
+
+.delete-btn {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  justify-content: center;
+  padding: 0;
+  font-weight: bold;
+  color: #d0d2d3;
+}
+
+.delete-btn:hover {
+  background-color: #DD1972;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-btn:focus {
+  outline: none;
+}
+
+.chall2-card {
+  font-weight: 800;
+  font-size: 40px;
+  margin: 0;
+}
+
+.winner {
+  font-weight: 300;
+  font-size: 40px;
+  margin: 0;
+}
+
+@media only screen and (min-width:326px) and (max-width:768px) {
+  .header {
+    letter-spacing: -1.5px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 42px;
+  }
+
+  .header h2 {
+    font-size: 16px;
+  }
+
+  .subtitle::before {
+    width: 65px;
+  }
+
+  .subtitle::after {
+    width: 65px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .column-container {
+    flex-wrap: wrap;
+  }
+
+/*End right page styling*/
+
+/*Media queries*/
+
+@media only screen and (min-width:326px) and (max-width:768px) {
+  .header {
+    letter-spacing: -1.5px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 42px;
+  }
+
+  .header h2 {
+    font-size: 16px;
+  }
+
+  .subtitle::before {
+    width: 65px;
+  }
+
+  .subtitle::after {
+    width: 65px;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+  }
+
+  .column-container {
+    flex-wrap: wrap;
+  }
+
+  left-cards.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
