@@ -218,6 +218,11 @@ input.name2 {
   font-weight: 800;
 }
 
+.guess-message1,
+.guess-message2 {
+  font-size: 24px;
+}
+
 /*End left page styling*/
 
 /*Right page styling*/
@@ -235,7 +240,7 @@ input.name2 {
 
 .score-name1,
 .score-name2 {
-  font-size: 20px;
+  font-size: 24px;
   margin: 5px;
 }
 

@@ -19,6 +19,9 @@ var rightSide = document.querySelector('.right-column');
 var guessResult1 = document.querySelector('.guess-result1');
 var guessResult2 = document.querySelector('.guess-result2');
 var winnerCard = document.querySelector('.score-card');
+var guessMessage1 = document.querySelector('.guess-message1');
+var guessMessage2 = document.querySelector('.guess-message2');
+// var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
@@ -79,6 +82,17 @@ function displayGuesses() {
   guessResult2.innerText = guess2.value;
 };
 
+function compareGuess() {
+  if (guess1.value > parseInt(randomNumber)) {
+    guessMessage1.innerText = "Your Guess is Too High";
+  } else if (guess1.value < parseInt(randomNumber)) {
+    guessMessage1.innerText = "Your Guess is Too Low";
+  } else {
+    guessMessage1.innerText = "BOOM!!!";
+  }
+};
+
+
 function appendCard(winnerName) {
   let card =
   `<article class="score-card">
@@ -116,5 +130,7 @@ function resetForm(e) {
 function executeGame(e) {
   e.preventDefault();
   displayGuesses();
+  compareGuess();
   appendWinner();
+  appendCard(winnerName);
 }
