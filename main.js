@@ -3,9 +3,12 @@ var maxRange = document.querySelector('.max-range');
 var updateBtn = document.querySelector('.update');
 var currentMin = document.querySelector('.range-start');
 var currentMax = document.querySelector('.range-end');
+var resetBtn = document.querySelector('.reset-btn');
+var inputFields = document.querySelectorAll('input');
 
 updateBtn.addEventListener('click', setRange);
 
+resetBtn.addEventListener('click', resetForm);
 
 
 
@@ -22,6 +25,13 @@ function setRange() {
 function getSolution(min, max) {
     var solution = Math.floor(Math.random() * (max - min + 1) + min);
     console.log(solution);
+}
+
+function resetForm(e) {
+  e.preventDefault();
+  inputFields.forEach(function(input){
+    input.value = ""
+  });
 }
 
 
