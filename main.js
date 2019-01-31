@@ -8,6 +8,7 @@ var clearBtn = document.querySelector('.clear-btn');
 var inputFields = document.querySelectorAll('input');
 var infoInput = document.querySelector('.info-input');
 var playerInput = document.querySelectorAll('.player-input');
+var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
@@ -27,6 +28,7 @@ function setRange() {
 function getSolution(min, max) {
     var solution = Math.floor(Math.random() * (max - min + 1) + min);
     console.log(solution);
+    return solution;
 }
 
 // function enableButtons() {
@@ -61,6 +63,6 @@ function disableButtons() {
 function resetForm(e) {
     e.preventDefault();
     inputFields.forEach(function(input){
-        input.value = ""
+        input.value = '';
     });
 }
