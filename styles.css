@@ -272,8 +272,10 @@ hr {
 }
 
 .card-title {
-  font-variant-caps: small-caps;
+  font-variant-caps: all-small-caps;
   font-weight: bold;
+  font-size: 28px;
+  margin: 10px;
 }
 
 .score-card-item strong {
@@ -309,7 +311,7 @@ hr {
 .winner {
   font-weight: 300;
   font-size: 40px;
-  margin: 0;
+  margin: 20px;
 }
 
 @media only screen and (min-width:326px) and (max-width:768px) {
