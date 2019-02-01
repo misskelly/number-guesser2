@@ -88,11 +88,16 @@ function compareGuess() {
     guessMessage1.innerText = "Your Guess is Too High";
   } else if (guess1.value < parseInt(randomNumber)) {
     guessMessage1.innerText = "Your Guess is Too Low";
-  } else {
-    guessMessage1.innerText = "BOOM!!!";
-  }
-};
+  } else guessMessage1.innerText = "BOOM!!!";
+}
 
+function compareGuess2() {
+  if (guess2.value > parseInt(randomNumber)) {
+    guessMessage2.innerText = "Your Guess is Too High";
+  } else if (guess2.value < parseInt(randomNumber)) {
+    guessMessage2.innerText = "Your Guess is Too Low";
+  } else guessMessage2.innerText = "BOOM!!!";
+}
 
 function appendCard(winnerName) {
     let card =
@@ -101,7 +106,7 @@ function appendCard(winnerName) {
     ${scoreName2.innerText}</p>
     <hr>
     <h2 class="winner-card"></h2>
-    <p class="winner">${winnerName} is the WINNER</p>
+    <p class="winner">${winnerName}<span class="winner1">is the WINNER</span></p>
     <hr>
     <section class="score-card-bottom">
     <section class="score-card-item"><strong>0</strong> GUESSES</section>
@@ -132,6 +137,7 @@ function executeGame(e) {
   e.preventDefault();
   displayGuesses();
   compareGuess();
+  compareGuess2();
   appendWinner();
   appendCard(winnerName);
 }
