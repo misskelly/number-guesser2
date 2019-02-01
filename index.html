@@ -20,12 +20,12 @@
           <h4 class="form-title">Set Range</h4>
           <form class="form">
             <label class="input-label">Min Range
-              <input min="1" type="number" class="min-range input" required>
+              <input type="number" class="min-range input" min="0" max="100" placeholder="1" required>
             </label>
             <label class="input-label">Max Range
-              <input type="number" class="max-range input" max="100" required>
+              <input type="number" class="max-range input" min="0" max="100" placeholder="100" required>
             </label>
-            <button type="button" class="update btn">UPDATE</button>
+            <button type="submit" class="update btn">UPDATE</button>
           </form>
         </article>
         <article class="guess-form">
@@ -33,61 +33,61 @@
           <form>
             <h4 class="form-title">Challenger 1</h4>
             <div class="info-input">
-            <label>Name
-              <input type="text" class="name1 player-input input" required>
-            </label>
-          <label class="chall1-guess" required>Guess
-            <input type="number" class="guess1 player-input input" maxlength="3" required>
-          </label>
-        </div>
-          <h4 class="form-title">Challenger 2</h4>
-          <div class="info-input">
-          <label class="chall2-name">Name
-            <input type="text" class="input player-input name2" required>
-          </label>
-          <label class="chall2-guess">Guess
-            <input type="number" class="input player-input guess2" maxlength="3"required>
-          </label>
-        </div>
-          <section class="btn-group">
-            <button class=" submit-btn btn" type="submit" >SUBMIT GUESS</button>
-            <button class="btn reset-btn" type="reset" disabled="true">RESET GAME</button>
-            <button class="btn clear-btn" type="reset" disabled="true">CLEAR GAME</button>
+              <label>Name
+                <input type="text" class="name1 player-input input" required>
+              </label>
+              <label class="chall1-guess" required>Guess
+                <input type="number" class="guess1 player-input input" maxlength="3" required>
+              </label>
+            </div>
+            <h4 class="form-title">Challenger 2</h4>
+            <div class="info-input">
+              <label class="chall2-name">Name
+                <input type="text" class="input player-input name2" required>
+              </label>
+              <label class="chall2-guess">Guess
+                <input type="number" class="input player-input guess2" maxlength="3"required>
+              </label>
+            </div>
+            <section class="btn-group">
+              <button class=" submit-btn btn" type="submit" >SUBMIT GUESS</button>
+              <button class="btn reset-btn" type="reset" disabled="true">RESET GAME</button>
+              <button class="btn clear-btn" type="reset" disabled="true">CLEAR GAME</button>
+            </section>
+          </form>
+        </article>
+        <article class="left-cards score">
+          <h4 class="form-title">Latest Score</h4>
+          <section class="align-scores">
+            <div class="chall1-score">
+              <h5 class="score-name1">Challenger 1 Name</h5>
+              <p class="current">current guess</p>
+              <h1 class="guess-result1">0</h1>
+              <p class="guess-message1"></p>
+            </div>
+            <div class="chall2-score">
+              <h5 class="score-name2">Challenger 2 Name</h5>
+              <p class="current">current guess</p>
+              <h1  class="guess-result2">0</h1>
+              <p class="guess-message2"></p>
+            </div>
           </section>
-        </form>
+        </article>
       </article>
-      <article class="left-cards score">
-        <h4 class="form-title">Latest Score</h4>
-        <section class="align-scores">
-          <div class="chall1-score">
-            <h5 class="score-name1">Challenger 1 Name</h5>
-            <p class="current">current guess</p>
-            <h1 class="guess-result1">0</h1>
-            <p class="guess-message1"></p>
-          </div>
-          <div class="chall2-score">
-            <h5 class="score-name2">Challenger 2 Name</h5>
-            <p class="current">current guess</p>
-            <h1  class="guess-result2">0</h1>
-            <p class="guess-message2"></p>
-          </div>
-        </section>
-      </article>
-    </article>
+    </section>
+    <section class="column right-column">
+      <!-- <article class="score-card">
+        <p class="card-title">CHALLENGER 2 NAME<span> vs</span>
+      CHALLENGER 2 NAME</p>
+      <hr>
+      <h2 class="winner-card"></h2>
+      <p class="winner">is the WINNER</p>
+      <hr>
+      <section class="score-card-bottom">
+      <section class="score-card-item"><strong>0</strong> GUESSES</section>
+    <section class="score-card-item"><strong>0</strong> MINUTES</section>
+    <button class="score-card-item delete-btn" type="reset">X</button>
   </section>
-  <section class="column right-column">
-    <!-- <article class="score-card">
-      <p class="card-title">CHALLENGER 2 NAME<span> vs</span>
-    CHALLENGER 2 NAME</p>
-    <hr>
-    <h2 class="winner-card"></h2>
-    <p class="winner">is the WINNER</p>
-    <hr>
-    <section class="score-card-bottom">
-    <section class="score-card-item"><strong>0</strong> GUESSES</section>
-  <section class="score-card-item"><strong>0</strong> MINUTES</section>
-  <button class="score-card-item delete-btn" type="reset">X</button>
-</section>
 </article> -->
 </section>
 <script type="text/javascript" src="main.js"></script>
