@@ -31,7 +31,8 @@ submitBtn.addEventListener('click', executeGame);
 
 
 
-function setRange() {
+function setRange(e) {
+    e.preventDefault();
     const min = parseInt(minRange.value, 10) || 1;
     const max = parseInt(maxRange.value, 10) || 100;
     currentMin.innerText = min;
@@ -76,11 +77,11 @@ function disableButtons() {
 }
 
 function displayGuesses() {
-  scoreName1.innerText = name1.value;
-  scoreName2.innerText = name2.value;
-  guessResult1.innerText = guess1.value;
-  guessResult2.innerText = guess2.value;
-};
+    scoreName1.innerText = name1.value;
+    scoreName2.innerText = name2.value;
+    guessResult1.innerText = guess1.value;
+    guessResult2.innerText = guess2.value;
+}
 
 function compareGuess() {
   if (guess1.value > parseInt(randomNumber)) {
@@ -94,7 +95,7 @@ function compareGuess() {
 
 
 function appendCard(winnerName) {
-  let card =
+    let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
     ${scoreName2.innerText}</p>
@@ -107,16 +108,16 @@ function appendCard(winnerName) {
   <section class="score-card-item"><strong>0</strong> MINUTES</section>
   <button class="score-card-item delete-btn" type="reset">X</button>
 </section>
-</article>`
-  rightSide.innerHTML += card
-};
+</article>`;
+    rightSide.innerHTML += card;
+}
 
 function appendWinner() {
-  if(randomNumber === parseInt(guess1.value)) {
-    appendCard(name1.value);
-  }else if (randomNumber === parseInt(guess2.value)) {
-    appendCard(name2.value);
-  }
+    if(randomNumber === parseInt(guess1.value)) {
+        appendCard(name1.value);
+    }else if (randomNumber === parseInt(guess2.value)) {
+        appendCard(name2.value);
+    }
 }
 
 function resetForm(e) {
