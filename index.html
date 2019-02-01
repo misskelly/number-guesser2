@@ -20,24 +20,24 @@
           <h4 class="form-title">Set Range</h4>
           <form class="form">
             <label class="input-label">Min Range
-              <input type="number" class="min-range input" min="0" max="100" placeholder="1" required>
+              <input type="number" class="min-range input" min="1" max="100" placeholder="1" required pattern="0-9" maxlength="2">
             </label>
             <label class="input-label">Max Range
-              <input type="number" class="max-range input" min="0" max="100" placeholder="100" required>
+              <input type="number" class="max-range input" min="1" max="100" placeholder="100" required>
             </label>
             <button type="submit" class="update btn">UPDATE</button>
           </form>
         </article>
         <article class="guess-form">
           <p class="current-range">The Current Range is <span class="range-start">1</span> to <span class="range-end">100</span></p>
-          <form>
+          <form class="game-form">
             <h4 class="form-title">Challenger 1</h4>
             <div class="info-input">
               <label>Name
-                <input type="text" class="name1 player-input input" required>
+                <input type="text" class="name1 player-input input" required pattern="a-z">
               </label>
               <label class="chall1-guess" required>Guess
-                <input type="number" class="guess1 player-input input" maxlength="3" required>
+                <input type="number" class="guess1 player-input input guess" maxlength="3" required>
               </label>
             </div>
             <h4 class="form-title">Challenger 2</h4>
@@ -46,7 +46,7 @@
                 <input type="text" class="input player-input name2" required>
               </label>
               <label class="chall2-guess">Guess
-                <input type="number" class="input player-input guess2" maxlength="3"required>
+                <input type="number" class="input player-input guess2 guess" maxlength="3"required>
               </label>
             </div>
             <section class="btn-group">
