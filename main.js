@@ -1,3 +1,4 @@
+var rangeForm = document.querySelector('.range-form');
 var minRange = document.querySelector('.min-range');
 var maxRange = document.querySelector('.max-range');
 var updateBtn = document.querySelector('.update');
@@ -11,11 +12,13 @@ var infoInput = document.querySelector('.info-input');
 var playerInput = document.querySelectorAll('.player-input');
 var name1 = document.querySelector('.name1');
 var name2 = document.querySelector('.name2');
+var guesses = document.querySelectorAll('.guess');
 var guess1 = document.querySelector('.guess1');
 var guess2 = document.querySelector('.guess2');
 var scoreName1 = document.querySelector('.score-name1');
 var scoreName2 = document.querySelector('.score-name2');
-var rightSide = document.querySelector('.right-column'); 
+var rightSide = document.querySelector('.right-column');
+var gameForm = document.querySelector('.game-form');
 var guessResult1 = document.querySelector('.guess-result1');
 var guessResult2 = document.querySelector('.guess-result2');
 var winnerCard = document.querySelector('.score-card');
@@ -28,6 +31,7 @@ updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
+// gameForm.addEventListener('input', validateGuess);
 
 
 
@@ -38,25 +42,35 @@ function setRange(e) {
     validateRange(min, max);
 }
 
+
 function validateRange(min, max) {
     // debugger
     if (min > max) {
         alert('Min range value cannot be greater than max range value.');
-        minRange.value = '';
-        maxRange.value = '';
-    } else {
+        rangeFormInvalid();
+    } else if (min === max)  {
+        alert('Min and Max cannot be the same value.');
+        rangeFormInvalid();
+    } else if (!rangeForm.checkValidity()) {
+        alert('Please enter a Minimum and Maximum range using numbers between 1 and 100.');
+        rangeFormInvalid();
+    } else { 
         currentMin.innerText = min;
         currentMax.innerText = max;
         getSolution(min, max);
     }
 }
 
+function rangeFormInvalid() {
+    event.preventDefault();
+    minRange.value = '';
+    maxRange.value = '';
+}
 function getSolution(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
     console.log(`Pssst the solution is ${randomNumber}`);
     return randomNumber;
 }
-
 
 function disableButtons() {
     if (playerInput[0].value.length === 0
