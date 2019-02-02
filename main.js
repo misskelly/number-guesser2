@@ -27,11 +27,13 @@ var guessMessage2 = document.querySelector('.guess-message2');
 // var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
 
+
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
 gameForm.addEventListener('input', validateGuess);
+rightSide.addEventListener('click', findDelete);
 
 
 
@@ -175,3 +177,15 @@ function executeGame(e) {
     appendWinner();
     appendCard(winnerName);
 }
+
+function findDelete(e) {
+  var winnerCard = e.target.parentElement.parentElement;
+  if (e.target.classList.contains('delete-btn')) {
+    deleteCard(winnerCard)
+  }
+}
+
+function deleteCard(card) {
+  card.style.display = 'none';
+}
+
