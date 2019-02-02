@@ -31,7 +31,7 @@ updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
-gameForm.addEventListener('input', validateGuess);
+// gameForm.addEventListener('input', validateGuess);
 
 
 
@@ -105,6 +105,7 @@ function validateGameForm(){
         alert('All fields must be filled out.');
         throw false;
     }
+    validateGuess();
 }
 
 function displayGuesses() {
