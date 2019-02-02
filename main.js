@@ -33,33 +33,29 @@ submitBtn.addEventListener('click', executeGame);
 
 function setRange(e) {
     e.preventDefault();
-    const min = parseInt(minRange.value, 10) || 1;
-    const max = parseInt(maxRange.value, 10) || 100;
-    currentMin.innerText = min;
-    currentMax.innerText = max;
-    console.log(min, max);
-    getSolution(min, max);
+    const min = parseInt(minRange.value) || 1;
+    const max = parseInt(maxRange.value) || 100;
+    validateRange(min, max);
 }
 
+function validateRange(min, max) {
+    // debugger
+    if (min > max) {
+        alert('Min range value cannot be greater than max range value.');
+        minRange.value = '';
+        maxRange.value = '';
+    } else {
+        currentMin.innerText = min;
+        currentMax.innerText = max;
+        getSolution(min, max);
+    }
+}
 
 function getSolution(min, max) {
-    var solution = Math.floor(Math.random() * (max - min + 1) + min);
-    console.log(solution);
-    return solution;
+    randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    console.log(`Pssst the solution is ${randomNumber}`);
+    return randomNumber;
 }
-
-// function enableButtons() {
-//     debugger
-//     for (var i = 0; i < playerInput.length; i++) {
-//         if (playerInput[i].value.length > 0){
-//             resetBtn.disabled = false;
-//             clearBtn.disabled = false;      
-//         } else {
-//             resetBtn.disabled = true;
-//             clearBtn.disabled = true;
-//     }
-//   }
-// }
 
 
 function disableButtons() {
@@ -84,19 +80,21 @@ function displayGuesses() {
 }
 
 function compareGuess() {
-  if (guess1.value > parseInt(randomNumber)) {
-    guessMessage1.innerText = "Your Guess is Too High";
-  } else if (guess1.value < parseInt(randomNumber)) {
-    guessMessage1.innerText = "Your Guess is Too Low";
-  } else guessMessage1.innerText = "BOOM!!!";
+    if (guess1.value > parseInt(randomNumber)) {
+        guessMessage1.innerText = 'Your Guess is Too High';
+    } else if (guess1.value < parseInt(randomNumber)) {
+        guessMessage1.innerText = 'Your Guess is Too Low';
+    } else guessMessage1.innerText = 'BOOM!!!';
 }
 
 function compareGuess2() {
-  if (guess2.value > parseInt(randomNumber)) {
-    guessMessage2.innerText = "Your Guess is Too High";
-  } else if (guess2.value < parseInt(randomNumber)) {
-    guessMessage2.innerText = "Your Guess is Too Low";
-  } else guessMessage2.innerText = "BOOM!!!";
+    if (guess2.value > parseInt(randomNumber)) {
+        guessMessage2.innerText = 'Your Guess is Too High';
+    } else if (guess2.value < parseInt(randomNumber)) {
+        guessMessage2.innerText = 'Your Guess is Too Low';
+    } else if (parseInt(guess2.value) === randomNumber) {
+        guessMessage2.innerText = 'BOOM!!!';
+    }
 }
 
 function appendCard(winnerName) {
@@ -134,10 +132,10 @@ function resetForm(e) {
 }
 
 function executeGame(e) {
-  e.preventDefault();
-  displayGuesses();
-  compareGuess();
-  compareGuess2();
-  appendWinner();
-  appendCard(winnerName);
+    e.preventDefault();
+    displayGuesses();
+    compareGuess();
+    compareGuess2();
+    appendWinner();
+    appendCard(winnerName);
 }
