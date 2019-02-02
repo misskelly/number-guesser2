@@ -31,7 +31,7 @@ updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
-// gameForm.addEventListener('input', validateGuess);
+gameForm.addEventListener('input', validateGuess);
 
 
 
@@ -83,6 +83,27 @@ function disableButtons() {
         clearBtn.disabled = false;
         resetBtn.disabled = false;
         !playerInput.required;
+    }
+}
+
+function validateGuess() {
+    guesses.forEach(function(guess) {
+        let min = parseInt(currentMin.innerText);
+        let max = parseInt(currentMax.innerText);
+        let guessVal = parseInt(guess.value);
+        guess.min = min;
+        guess.max = max;
+        if (guessVal < min || guessVal > max) {
+            alert(`Guess must be between ${min} and ${max}`);
+            guess.value = '';
+        }
+    });
+}
+
+function validateGameForm(){
+    if (!gameForm.checkValidity()) {
+        alert('All fields must be filled out.');
+        throw false;
     }
 }
 
@@ -141,12 +162,13 @@ function resetForm(e) {
     e.preventDefault();
     inputFields.forEach(function(input){
         input.value = '';
-        getSolution();
+        getSolution(1, 100);
     });
 }
 
 function executeGame(e) {
     e.preventDefault();
+    validateGameForm();
     displayGuesses();
     compareGuess();
     compareGuess2();
