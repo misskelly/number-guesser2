@@ -121,7 +121,7 @@ input:invalid {
 }
 
 input:valid {
-  border: 2px solid black;
+  border: 2px solid darkgrey;
 }
 
 .form {
@@ -311,6 +311,11 @@ hr {
   font-weight: 800;
   font-size: 40px;
   margin: 0;
+}
+
+.guesses {
+  font-weight: 700;
+  margin-right: 5px;
 }
 
 .winner {
