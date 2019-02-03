@@ -28,14 +28,17 @@ var guessResult2 = document.querySelector('.guess-result2');
 var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
+var numberOfGuesses = 1;
 // var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
+
 
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
-// gameForm.addEventListener('input', validateGuess);
+rightSide.addEventListener('click', findDelete);
+
 
 
 
@@ -155,6 +158,7 @@ function compareGuess2() {
 }
 
 function appendCard(winnerName) {
+  console.log(winnerName);
     let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
@@ -164,7 +168,7 @@ function appendCard(winnerName) {
     <p class="winner">${winnerName}<span class="winner1">is the WINNER</span></p>
     <hr>
     <section class="score-card-bottom">
-    <section class="score-card-item"><strong>0</strong> GUESSES</section>
+    <section class="score-card-item"><span class="guesses">${numberOfGuesses * 2}</span>GUESSES</section>
   <section class="score-card-item"><strong>0</strong> MINUTES</section>
   <button class="score-card-item delete-btn" type="reset">X</button>
 </section>
@@ -178,6 +182,7 @@ function appendWinner() {
     }else if (randomNumber === parseInt(guess2.value)) {
         appendCard(name2.value);
     }
+    numberOfGuesses++
 }
 
 function resetForm(e) {
@@ -197,3 +202,15 @@ function executeGame(e) {
     appendWinner();
     appendCard(winnerName);
 }
+
+function findDelete(e) {
+  var winnerCard = e.target.parentElement.parentElement;
+  if (e.target.classList.contains('delete-btn')) {
+    deleteCard(winnerCard)
+  }
+}
+
+function deleteCard(card) {
+  card.style.display = 'none';
+}
+
