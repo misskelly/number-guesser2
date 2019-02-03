@@ -1,6 +1,8 @@
 var rangeForm = document.querySelector('.range-form');
 var minRange = document.querySelector('.min-range');
 var maxRange = document.querySelector('.max-range');
+var rangeErr = document.querySelector('.range-err');
+var rangeErrMessage = document.querySelector('.range-err-message');
 var updateBtn = document.querySelector('.update');
 var currentMin = document.querySelector('.range-start');
 var currentMax = document.querySelector('.range-end');
@@ -15,6 +17,8 @@ var name2 = document.querySelector('.name2');
 var guesses = document.querySelectorAll('.guess');
 var guess1 = document.querySelector('.guess1');
 var guess2 = document.querySelector('.guess2');
+var ch1Err = document.querySelector('.ch1-err');
+var ch2Err = document.querySelector('.ch2-err');
 var scoreName1 = document.querySelector('.score-name1');
 var scoreName2 = document.querySelector('.score-name2');
 var rightSide = document.querySelector('.right-column');
@@ -33,8 +37,8 @@ updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
-gameForm.addEventListener('input', validateGuess);
 rightSide.addEventListener('click', findDelete);
+
 
 
 
@@ -48,27 +52,44 @@ function setRange(e) {
 
 function validateRange(min, max) {
     // debugger
-    if (min > max) {
-        alert('Min range value cannot be greater than max range value.');
-        rangeFormInvalid();
-    } else if (min === max)  {
-        alert('Min and Max cannot be the same value.');
+    if (min >= max) {
+        rangeErrMessage.innerText = 'Min range value must be lower than max range value';
+        errorMessage(rangeErr, [minRange, maxRange]);
         rangeFormInvalid();
     } else if (!rangeForm.checkValidity()) {
-        alert('Please enter a Minimum and Maximum range using numbers between 1 and 100.');
+        rangeErrMessage.innerText = 'Enter a min and max range using numbers between 1 and 100.';
+        errorMessage(rangeErr, [minRange, maxRange]);
         rangeFormInvalid();
     } else { 
         currentMin.innerText = min;
         currentMax.innerText = max;
         getSolution(min, max);
+        reverseErrorMessage(rangeErr, [minRange, maxRange]);
     }
 }
+
+function errorMessage(err, inputs) {
+    err.classList.add('visible');
+    inputs.forEach(function(input){
+        input.classList.add('input-err');
+    });   
+}
+
+function reverseErrorMessage(err, inputs) {
+    err.classList.remove('visible');
+    inputs.forEach(function(input){
+        input.classList.remove('input-err');
+    });
+}
+
 
 function rangeFormInvalid() {
     event.preventDefault();
     minRange.value = '';
     maxRange.value = '';
 }
+
+
 function getSolution(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
     console.log(`Pssst the solution is ${randomNumber}`);
@@ -76,10 +97,10 @@ function getSolution(min, max) {
 }
 
 function disableButtons() {
-    if (playerInput[0].value.length === 0
-    && playerInput[1].value.length === 0
-    && playerInput[2].value.length === 0
-    && playerInput[3].value.length === 0) {
+    if (playerInput[2].value.length === 0
+    && playerInput[3].value.length === 0
+    && playerInput[4].value.length === 0
+    && playerInput[5].value.length === 0) {
         clearBtn.disabled = true;
         resetBtn.disabled = true;
     } else {
@@ -108,6 +129,7 @@ function validateGameForm(){
         alert('All fields must be filled out.');
         throw false;
     }
+    validateGuess();
 }
 
 function displayGuesses() {

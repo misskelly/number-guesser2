@@ -20,17 +20,19 @@
           <h4 class="form-title">Set Range</h4>
           <form class="form range-form">
             <label class="input-label">Min Range
-              <input type="number" class="min-range input" min="1" max="100" placeholder="1"pattern="0-9">
+              <input type="number" class="player-input min-range input" min="1" max="100" placeholder="1"pattern="0-9">
             </label>
             <label class="input-label">Max Range
-              <input type="number" class="max-range input" min="1" max="100" placeholder="100">
+              <input type="number" class="player-input max-range input " min="1" max="100" placeholder="100">
             </label>
             <button type="submit" class="update btn">UPDATE</button>
           </form>
-          <div class="range-err error-container">
-            <!-- <img src="asset/error-icon.svg" class="error-icon">
-            <p class="error-message">Error message</p> -->
-          </div>
+          <article class=" error-container">
+            <div class="range-err error hidden">
+             <img src="asset/error-icon.svg" class="error-icon">
+            <p class="error-message range-err-message">Error message</p> 
+            </div>
+          </article>
         </article>
         <article class="guess-form">
           <p class="current-range">The Current Range is <span class="range-start">1</span> to <span class="range-end">100</span></p>
@@ -44,10 +46,12 @@
                 <input type="number" class="guess1 player-input input guess"pattern="0-9" required>
               </label>
             </div>
-            <div class="ch1-err error-container">
-                <!-- <img src="asset/error-icon.svg" class="error-icon">
-                <p class="error-message">Error message</p> -->
-            </div>
+            <article class="range-err error-container">
+              <div class="error ch1-err hidden">
+                <img src="asset/error-icon.svg" class="error-icon">
+                <p class="error-message">Error message</p> 
+              </div>
+            </article>
             <h4 class="form-title">Challenger 2</h4>
             <div class="info-input">
               <label class="chall2-name">Name
@@ -57,10 +61,12 @@
                 <input type="number" class="input player-input guess2 guess" maxlength="3" pattern="0-9" required>
               </label>
             </div>
-            <div class="ch2-err error-container">
-             <!--  <img src="asset/error-icon.svg" class="error-icon">
-              <p class="error-message">Error message</p> -->
-            </div>
+            <article class="range-err error-container">
+              <div class="error hidden ch2-err">
+                <img src="asset/error-icon.svg" class="error-icon">
+                <p class="error-message">Error message</p> 
+              </div>
+            </article>
             <section class="btn-group">
               <button class=" submit-btn btn" type="submit" >SUBMIT GUESS</button>
               <button class="btn reset-btn" type="reset" disabled="true">RESET GAME</button>
