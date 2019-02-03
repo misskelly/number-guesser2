@@ -332,6 +332,11 @@ hr {
   margin: 0;
 }
 
+.guesses {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
 .winner {
   font-weight: 700;
   font-size: 40px;

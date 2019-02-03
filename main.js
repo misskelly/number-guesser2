@@ -24,6 +24,7 @@ var guessResult2 = document.querySelector('.guess-result2');
 var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
+var numberOfGuesses = 1;
 // var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
 
@@ -135,6 +136,7 @@ function compareGuess2() {
 }
 
 function appendCard(winnerName) {
+  console.log(winnerName);
     let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
@@ -144,7 +146,7 @@ function appendCard(winnerName) {
     <p class="winner">${winnerName}<span class="winner1">is the WINNER</span></p>
     <hr>
     <section class="score-card-bottom">
-    <section class="score-card-item"><strong>0</strong> GUESSES</section>
+    <section class="score-card-item"><span class="guesses">${numberOfGuesses * 2}</span>GUESSES</section>
   <section class="score-card-item"><strong>0</strong> MINUTES</section>
   <button class="score-card-item delete-btn" type="reset">X</button>
 </section>
@@ -158,6 +160,7 @@ function appendWinner() {
     }else if (randomNumber === parseInt(guess2.value)) {
         appendCard(name2.value);
     }
+    numberOfGuesses++
 }
 
 function resetForm(e) {
