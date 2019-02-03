@@ -116,19 +116,31 @@ input:focus {
   margin-right: 20px;
 }
 
-.error-input:invalid {
+.input-err {
+  border: 2px solid #DD1972;
+}
+
+/*.error-input:invalid {
   border: 2px dashed #DD1972;
 }
 
 input:valid {
   border: 2px solid #d0d2d3;
-}
+}*/
 
 .error-container {
-  padding: 5px 0 0 15px;
-  display: flex;
+  padding: 5px 0 10px 15px;
   width: 100%;
-  height: 18px;
+  height: 20px;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex; 
 }
 
 .error-icon {
