@@ -209,8 +209,8 @@ function deleteCard(card) {
 }
 
 function increaseDecrease(e) {
-    minRange.value = parseInt(minRange.value) - 10;
-    maxRange.value = parseInt(maxRange.value) + 10; 
+    minRange.value = parseInt(minRange.value) - 10 || 0;
+    maxRange.value = parseInt(maxRange.value) + 10 || 100; 
     setRange(e);
 }
 
