@@ -32,15 +32,11 @@ var numberOfGuesses = 1;
 // var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
 
-
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
 rightSide.addEventListener('click', findDelete);
-
-
-
 
 function setRange(e) {
     e.preventDefault();
@@ -48,7 +44,6 @@ function setRange(e) {
     const max = parseInt(maxRange.value) || 100;
     validateRange(min, max);
 }
-
 
 function validateRange(min, max) {
     // debugger
@@ -82,13 +77,11 @@ function reverseErrorMessage(err, inputs) {
     });
 }
 
-
 function rangeFormInvalid() {
     event.preventDefault();
     minRange.value = '';
     maxRange.value = '';
 }
-
 
 function getSolution(min, max) {
     randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
@@ -176,11 +169,13 @@ function appendCard(winnerName) {
     rightSide.innerHTML += card;
 }
 
-function appendWinner() {
+function appendWinner(e) {
     if(randomNumber === parseInt(guess1.value)) {
         appendCard(name1.value);
+        increaseDecrease(e);
     }else if (randomNumber === parseInt(guess2.value)) {
         appendCard(name2.value);
+        increaseDecrease(e);
     }
     numberOfGuesses++
 }
@@ -199,8 +194,7 @@ function executeGame(e) {
     displayGuesses();
     compareGuess();
     compareGuess2();
-    appendWinner();
-    appendCard(winnerName);
+    appendWinner(e);
 }
 
 function findDelete(e) {
@@ -212,5 +206,11 @@ function findDelete(e) {
 
 function deleteCard(card) {
   card.style.display = 'none';
+}
+
+function increaseDecrease(e) {
+    minRange.value = parseInt(minRange.value) - 10;
+    maxRange.value = parseInt(maxRange.value) + 10; 
+    setRange(e);
 }
 
