@@ -1,4 +1,4 @@
-* {
+  * {
   box-sizing: border-box;
 }
 
@@ -363,7 +363,6 @@ hr {
 
 @media only screen and (min-width:326px) and (max-width:768px) {
   .header {
-    /*letter-spacing: -1.5px;*/
     text-align: center;
   }
 
@@ -412,23 +411,40 @@ hr {
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .subtitle::before {
-    width: 65px;
+    width: 50px;
   }
 
   .subtitle::after {
-    width: 65px;
+    width: 50px;
   }
 
   .update {
     display: block;
   }
 
+  .update {
+    width: 40%;
+  }
+
   .btn {
     margin-bottom: 10px;
+  }
+
+  .info-input {
+    flex-direction: column;
+    width: 350px;
+  }
+
+  .player-input {
+    width: 350px;
+  }
+
+  .range-form {
+    flex-direction: column;
   }
 
   .btn-group {
@@ -444,8 +460,33 @@ hr {
     flex-wrap: wrap;
   }
 
-  left-cards.score {
+  .left-cards {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
+  .align-scores {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .chall1-score {
+    border-right: none;
+    width: 100%;
+    border-bottom: 3px solid #efefef;
+  }
+
+  .chall2-score {
+    width: 100%;
+  }
+
+  .score-name2 {
+    margin-top: 30px;
+  }
+
+ .form-title {
+  margin-bottom: 20px;
+  font-size: 26px;
+ }
