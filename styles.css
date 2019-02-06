@@ -360,48 +360,7 @@ hr {
 
 /*Media queries*/
 
-/*@media only screen and (min-width:600px) and (max-width:1000px){
-  .header {
-    letter-spacing: -1.5px;
-    text-align: center;
-  }
-
-  .title {
-    font-size: 55px;
-  }
-
-  .subtitle {
-    font-size: 24px;
-  }
-
-  .subtitle::before {
-    width: 50px;
-  }
-
-  .subtitle::after {
-    width: 50px;
-  }
-
-  .column {
-    width: 100%;
-  }
-
-  .column-container {
-    flex-wrap: wrap;
-  }
-
-  .left-cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .right-column {
-    display: flex;
-    flex-wrap: wrap;
-  }*/
-
-@media only screen and (min-width:326px) and (max-width:599px) {
+@media only screen and (min-width:326px) and (max-width:900px) {
   .header {
     letter-spacing: -1.5px;
     text-align: center;
@@ -430,6 +389,16 @@ hr {
 
   .input {
     margin: 5px 0px;
+    width: 95%;
+  }
+
+  input.name1,
+  input.name2 {
+    width: 100%;
+  }
+
+  .player-input {
+    width: 100%;
   }
 
   .btn {
@@ -447,11 +416,6 @@ hr {
 
   .info-input {
     flex-direction: column;
-    width: 350px;
-  }
-
-  .player-input {
-    width: 350px;
   }
 
   .range-form {
@@ -468,7 +432,9 @@ hr {
   }
 
   .column-container {
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    /*flex-wrap: wrap;*/
   }
 
   .left-cards {
@@ -486,6 +452,10 @@ hr {
     flex-direction: column;
     justify-content: center;
     align-content: center;
+  }
+
+  .name-2 {
+    width: 100%;
   }
 
   .chall1-score {
