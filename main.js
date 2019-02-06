@@ -17,7 +17,6 @@ var name2 = document.querySelector('.name2');
 var guesses = document.querySelectorAll('.guess');
 var guess1 = document.querySelector('.guess1');
 var guess2 = document.querySelector('.guess2');
-var ch1Err = document.querySelector('.ch1-err');
 var gameErr = document.querySelector('.game-err');
 var gameErrMessage = document.querySelector('.game-error-message');
 var scoreName1 = document.querySelector('.score-name1');
@@ -35,6 +34,7 @@ var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
+// clearBtn.addEventListener('click', );
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
 rightSide.addEventListener('click', findDelete);
@@ -79,10 +79,15 @@ function reverseErrorMessage(err, inputs) {
     });
 }
 
+function clearForm(inputs) {
+    inputs.forEach(function(input){
+        input.value = '';
+    });
+}
+
 function rangeFormInvalid() {
     event.preventDefault();
-    minRange.value = '';
-    maxRange.value = '';
+    clearForm([minRange, maxRange]);
 }
 
 function getSolution(min, max) {
@@ -114,7 +119,6 @@ function validateGuess() {
         guess.max = max;
         if (guessVal < min || guessVal > max) {
             gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
-            guess.value = '';
             errorMessage(gameErr, guesses);
         }
     });
@@ -125,9 +129,8 @@ function validateGameForm(){
         gameErrMessage.innerText = 'All fields must be filled out.';
         errorMessage(gameErr, playerInput);
         throw false;
-    } else {
-        reverseErrorMessage(gameErr, playerInput);
     }
+    reverseErrorMessage(gameErr, playerInput);
     validateGuess();
 }
 
@@ -136,14 +139,19 @@ function displayGuesses() {
     scoreName2.innerText = name2.value;
     guessResult1.innerText = guess1.value;
     guessResult2.innerText = guess2.value;
+    // clearForm(guesses);
+
 }
 
 function compareGuess() {
-    if (guess1.value > parseInt(randomNumber)) {
+    debugger
+    if (guess1.value > randomNumber) {
         guessMessage1.innerText = 'Your Guess is Too High';
     } else if (guess1.value < parseInt(randomNumber)) {
         guessMessage1.innerText = 'Your Guess is Too Low';
-    } else guessMessage1.innerText = 'BOOM!!!';
+    } else if (parseInt(guess1.value) === randomNumber){
+        guessMessage1.innerText = 'BOOM!!!';
+    }
 }
 
 function compareGuess2() {
@@ -192,6 +200,7 @@ function resetForm(e) {
         input.value = '';
         getSolution(1, 100);
     });
+    rightSide.innerHTML = '';
 }
 
 function executeGame(e) {
@@ -201,18 +210,20 @@ function executeGame(e) {
     compareGuess();
     compareGuess2();
     appendWinner(e);
+    clearForm(guesses);
+    reverseErrorMessage(rangeErr, [minRange, maxRange]);
 }
 
 function findDelete(e) {
   var winnerCard = e.target.parentElement.parentElement;
   if (e.target.classList.contains('delete-btn')) {
-    winnerCard.remove()
+    winnerCard.remove();
   }
 }
 
 function increaseDecrease(e) {
-    minRange.value = parseInt(minRange.value) - 10 || 0;
-    maxRange.value = parseInt(maxRange.value) + 10 || 100; 
+    minRange.value = parseInt(minRange.value) - 10;
+    maxRange.value = parseInt(maxRange.value) + 10; 
     setRange(e);
 }
 
