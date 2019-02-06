@@ -29,7 +29,6 @@ var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
 var numberOfGuesses = 1;
-// var winnerName = document.querySelector('.winner');
 var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
@@ -47,7 +46,6 @@ function setRange(e) {
 }
 
 function validateRange(min, max) {
-    // debugger
     if (min >= max) {
         rangeErrMessage.innerText = 'Min range value must be lower than max range value';
         errorMessage(rangeErr, [minRange, maxRange]);
@@ -65,7 +63,6 @@ function validateRange(min, max) {
 }
 
 function errorMessage(err, inputs) {
-    // debugger
     err.classList.add('visible');
     inputs.forEach(function(input){
         input.classList.add('input-err');
@@ -139,10 +136,8 @@ function displayGuesses() {
     scoreName2.innerText = name2.value;
     guessResult1.innerText = guess1.value;
     guessResult2.innerText = guess2.value;
-}
 
 function compareGuess() {
-    // debugger
     if (guess1.value > randomNumber) {
         guessMessage1.innerText = 'Your Guess is Too High';
     } else if (guess1.value < parseInt(randomNumber)) {
