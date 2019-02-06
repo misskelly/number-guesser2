@@ -77,6 +77,10 @@ input:focus {
 
 /*Left page styling*/
 
+input::placeholder {
+  color: #d7d7d7;
+}
+
 .column-container {
   display: flex;
 }
