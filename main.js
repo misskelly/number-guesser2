@@ -196,6 +196,12 @@ function resetForm(e) {
         getSolution(1, 100);
     });
     rightSide.innerHTML = '';
+    guessResult1.innerText = '?';
+    guessResult2.innerText = '?';
+    guessMessage1.innerText = '';
+    guessMessage2.innerText = '';
+    scoreName1.innerText = 'Challenger 1 Name';
+    scoreName2.innerText = 'Challenger 2 Name';
 }
 
 function executeGame(e) {
