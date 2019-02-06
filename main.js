@@ -200,12 +200,8 @@ function executeGame(e) {
 function findDelete(e) {
   var winnerCard = e.target.parentElement.parentElement;
   if (e.target.classList.contains('delete-btn')) {
-    deleteCard(winnerCard)
+    winnerCard.remove()
   }
-}
-
-function deleteCard(card) {
-  card.style.display = 'none';
 }
 
 function increaseDecrease(e) {
