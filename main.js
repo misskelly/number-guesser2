@@ -47,7 +47,6 @@ function setRange(e) {
 }
 
 function validateRange(min, max) {
-    // debugger
     if (min >= max) {
         rangeErrMessage.innerText = 'Min range value must be lower than max range value';
         errorMessage(rangeErr, [minRange, maxRange]);
@@ -65,7 +64,6 @@ function validateRange(min, max) {
 }
 
 function errorMessage(err, inputs) {
-    // debugger
     err.classList.add('visible');
     inputs.forEach(function(input){
         input.classList.add('input-err');
@@ -142,7 +140,6 @@ function displayGuesses() {
 }
 
 function compareGuess() {
-    // debugger
     if (guess1.value > randomNumber) {
         guessMessage1.innerText = 'Your Guess is Too High';
     } else if (guess1.value < parseInt(randomNumber)) {
@@ -163,7 +160,6 @@ function compareGuess2() {
 }
 
 function appendCard(winnerName) {
-  console.log(winnerName);
     let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
@@ -194,10 +190,8 @@ function appendWinner() {
 
 function resetForm(e) {
     e.preventDefault();
-    inputFields.forEach(function(input){
-        input.value = '';
-        getSolution(1, 100);
-    });
+    clearForm(inputFields);
+    getSolution(1, 100);
     rightSide.innerHTML = '';
 }
 
@@ -213,10 +207,10 @@ function executeGame(e) {
 }
 
 function findDelete(e) {
-  var winnerCard = e.target.parentElement.parentElement;
-  if (e.target.classList.contains('delete-btn')) {
-    winnerCard.remove();
-  }
+    var winnerCard = e.target.parentElement.parentElement;
+    if (e.target.classList.contains('delete-btn')) {
+        winnerCard.remove();
+    }
 }
 
 function increaseDecrease() {
