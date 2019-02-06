@@ -18,7 +18,8 @@ var guesses = document.querySelectorAll('.guess');
 var guess1 = document.querySelector('.guess1');
 var guess2 = document.querySelector('.guess2');
 var ch1Err = document.querySelector('.ch1-err');
-var ch2Err = document.querySelector('.ch2-err');
+var gameErr = document.querySelector('.game-err');
+var gameErrMessage = document.querySelector('.game-error-message');
 var scoreName1 = document.querySelector('.score-name1');
 var scoreName2 = document.querySelector('.score-name2');
 var rightSide = document.querySelector('.right-column');
@@ -64,6 +65,7 @@ function validateRange(min, max) {
 }
 
 function errorMessage(err, inputs) {
+    // debugger
     err.classList.add('visible');
     inputs.forEach(function(input){
         input.classList.add('input-err');
@@ -90,10 +92,10 @@ function getSolution(min, max) {
 }
 
 function disableButtons() {
-    if (playerInput[2].value.length === 0
-    && playerInput[3].value.length === 0
-    && playerInput[4].value.length === 0
-    && playerInput[5].value.length === 0) {
+    if (playerInput[0].value.length === 0
+    && playerInput[1].value.length === 0
+    && playerInput[2].value.length === 0
+    && playerInput[3].value.length === 0) {
         clearBtn.disabled = true;
         resetBtn.disabled = true;
     } else {
@@ -111,16 +113,20 @@ function validateGuess() {
         guess.min = min;
         guess.max = max;
         if (guessVal < min || guessVal > max) {
-            alert(`Guess must be between ${min} and ${max}`);
+            gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
             guess.value = '';
+            errorMessage(gameErr, guesses);
         }
     });
 }
 
 function validateGameForm(){
     if (!gameForm.checkValidity()) {
-        alert('All fields must be filled out.');
+        gameErrMessage.innerText = 'All fields must be filled out.';
+        errorMessage(gameErr, playerInput);
         throw false;
+    } else {
+        reverseErrorMessage(gameErr, playerInput);
     }
     validateGuess();
 }
@@ -177,7 +183,7 @@ function appendWinner(e) {
         appendCard(name2.value);
         increaseDecrease(e);
     }
-    numberOfGuesses++
+    numberOfGuesses++;
 }
 
 function resetForm(e) {

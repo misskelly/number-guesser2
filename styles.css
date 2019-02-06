@@ -433,6 +433,15 @@ hr {
   .btn {
     margin-bottom: 10px;
   }
+  .error-container {
+  padding: 0;
+  width: 100%;
+  height: auto;
+  }
+
+  .game-err {
+    margin-top: 3px;
+  }
 
   .info-input {
     flex-direction: column;
