@@ -25,7 +25,6 @@ var rightSide = document.querySelector('.right-column');
 var gameForm = document.querySelector('.game-form');
 var guessResult1 = document.querySelector('.guess-result1');
 var guessResult2 = document.querySelector('.guess-result2');
-var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
 var numberOfGuesses = 1;
@@ -33,15 +32,14 @@ var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
-// clearBtn.addEventListener('click', );
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
 rightSide.addEventListener('click', findDelete);
 
 function setRange(e) {
     e.preventDefault();
-    const min = parseInt(minRange.value) || 1;
-    const max = parseInt(maxRange.value) || 100;
+    const min = minRange.value || 1;
+    const max = maxRange.value || 100;
     validateRange(min, max);
 }
 
@@ -76,19 +74,15 @@ function reverseErrorMessage(err, inputs) {
     });
 }
 
-function clearForm(inputs) {
-    inputs.forEach(function(input){
-        input.value = '';
-    });
-}
-
 function rangeFormInvalid() {
     event.preventDefault();
     clearForm([minRange, maxRange]);
 }
 
 function getSolution(min, max) {
-    randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    let x = parseInt(min);
+    let y = parseInt(max);
+    randomNumber = Math.floor(Math.random() * (y - x + 1) + x);
     console.log(`Pssst the solution is ${randomNumber}`);
     return randomNumber;
 }
@@ -107,18 +101,14 @@ function disableButtons() {
     }
 }
 
-function validateGuess() {
-    guesses.forEach(function(guess) {
-        let min = parseInt(currentMin.innerText);
-        let max = parseInt(currentMax.innerText);
-        let guessVal = parseInt(guess.value);
-        guess.min = min;
-        guess.max = max;
-        if (guessVal < min || guessVal > max) {
-            gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
-            errorMessage(gameErr, guesses);
-        }
-    });
+function executeGame(e) {
+    e.preventDefault();
+    validateGameForm();
+    displayGuesses();
+    compareGuess();
+    compareGuess2();
+    reverseErrorMessage(rangeErr, [minRange, maxRange]);
+    clearForm(guesses);
 }
 
 function validateGameForm(){
@@ -131,12 +121,27 @@ function validateGameForm(){
     validateGuess();
 }
 
-function displayGuesses() {
-    scoreName1.innerText = name1.value;
-    scoreName2.innerText = name2.value;
-    guessResult1.innerText = guess1.value;
-    guessResult2.innerText = guess2.value;
+function validateGuess() {
+    guesses.forEach(function(guess) {
+        let min = parseInt(currentMin.innerText);
+        let max = parseInt(currentMax.innerText);
+        let guessVal = parseInt(guess.value);
+        guess.min = min;
+        guess.max = max;
+        if (guessVal < min || guessVal > max) {
+            gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
+            errorMessage(gameErr, guesses);
+            throw false;
+        }
+    });
 }
+
+function clearForm(inputs) {
+    inputs.forEach(function(input){
+        input.value = '';
+    });
+}
+
 
 function compareGuess() {
     if (guess1.value > randomNumber) {
@@ -145,6 +150,8 @@ function compareGuess() {
         guessMessage1.innerText = 'Your Guess is Too Low';
     } else if (parseInt(guess1.value) === randomNumber){
         guessMessage1.innerText = 'BOOM!!!';
+        appendCard(name1.value);
+        increaseDecrease();
     }
 }
 
@@ -155,11 +162,34 @@ function compareGuess2() {
         guessMessage2.innerText = 'Your Guess is Too Low';
     } else if (parseInt(guess2.value) === randomNumber) {
         guessMessage2.innerText = 'BOOM!!!';
+        appendCard(name2.value);
+        increaseDecrease();
     }
+    numberOfGuesses++;
 }
 
+function displayGuesses() {
+    scoreName1.innerText = name1.value;
+    scoreName2.innerText = name2.value;
+    guessResult1.innerText = guess1.value;
+    guessResult2.innerText = guess2.value;
+}
+
+function resetForm(e) {
+    e.preventDefault();
+    clearForm(inputFields);
+    getSolution(1, 100);
+    rightSide.innerHTML = '';
+    guessResult1.innerText = '?';
+    guessResult2.innerText = '?';
+    guessMessage1.innerText = '';
+    guessMessage2.innerText = '';
+    scoreName1.innerText = 'Challenger 1 Name';
+    scoreName2.innerText = 'Challenger 2 Name';
+}
+
+
 function appendCard(winnerName) {
-  console.log(winnerName);
     let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
@@ -177,58 +207,24 @@ function appendCard(winnerName) {
     rightSide.innerHTML += card;
 }
 
-function appendWinner() {
-    if(randomNumber === parseInt(guess1.value)) {
-        appendCard(name1.value);
-        increaseDecrease();
-    }else if (randomNumber === parseInt(guess2.value)) {
-        appendCard(name2.value);
-        increaseDecrease();
-    }
-    numberOfGuesses++;
-}
-
-function resetForm(e) {
-    e.preventDefault();
-    inputFields.forEach(function(input){
-        input.value = '';
-        getSolution(1, 100);
-    });
-    rightSide.innerHTML = '';
-    guessResult1.innerText = '?';
-    guessResult2.innerText = '?';
-    guessMessage1.innerText = '';
-    guessMessage2.innerText = '';
-    scoreName1.innerText = 'Challenger 1 Name';
-    scoreName2.innerText = 'Challenger 2 Name';
-}
-
-function executeGame(e) {
-    e.preventDefault();
-    validateGameForm();
-    displayGuesses();
-    compareGuess();
-    compareGuess2();
-    appendWinner(e);
-    clearForm(guesses);
-    reverseErrorMessage(rangeErr, [minRange, maxRange]);
-}
-
-function findDelete(e) {
-  var winnerCard = e.target.parentElement.parentElement;
-  if (e.target.classList.contains('delete-btn')) {
-    winnerCard.remove();
-  }
-}
-
 function increaseDecrease() {
-    const newMin = parseInt(minRange.value) - 10;
-    const newMax = parseInt(maxRange.value) + 10;
+    let newMin = parseInt(minRange.value) - 10;
+    let newMax = parseInt(maxRange.value) + 10;
+    if (minRange.value === '' || maxRange.value === '') {
+        newMin = 1;
+        newMax = 100;
+    }
     minRange.value = newMin;
-    maxRange.value =  newMax;
+    maxRange.value = newMax;
     currentMin.innerText = newMin;
     currentMax.innerText = newMax;
     getSolution(newMin, newMax);
     clearForm(guesses);
 }
 
+function findDelete(e) {
+    var winnerCard = e.target.parentElement.parentElement;
+    if (e.target.classList.contains('delete-btn')) {
+        winnerCard.remove();
+    }
+}
