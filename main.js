@@ -23,23 +23,15 @@ var scoreName1 = document.querySelector('.score-name1');
 var scoreName2 = document.querySelector('.score-name2');
 var rightSide = document.querySelector('.right-column');
 var gameForm = document.querySelector('.game-form');
-// =========
-
-var guessResults = document.querySelectorAll('.guess-result');
 var guessResult1 = document.querySelector('.guess-result1');
 var guessResult2 = document.querySelector('.guess-result2');
-// var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
-// =========
-var guessMessages = document.querySelectorAll('.guess-message');
-
 var numberOfGuesses = 1;
 var randomNumber = getSolution(1, 100);
 
 updateBtn.addEventListener('click', setRange);
 resetBtn.addEventListener('click', resetForm);
-// clearBtn.addEventListener('click', );
 infoInput.addEventListener('keyup', disableButtons);
 submitBtn.addEventListener('click', executeGame);
 rightSide.addEventListener('click', findDelete);
@@ -111,12 +103,10 @@ function disableButtons() {
 
 function executeGame(e) {
     e.preventDefault();
-    // debugger
     validateGameForm();
     displayGuesses();
     compareGuess();
     compareGuess2();
-    appendWinner(e);
     reverseErrorMessage(rangeErr, [minRange, maxRange]);
     clearForm(guesses);
 }
@@ -160,6 +150,8 @@ function compareGuess() {
         guessMessage1.innerText = 'Your Guess is Too Low';
     } else if (parseInt(guess1.value) === randomNumber){
         guessMessage1.innerText = 'BOOM!!!';
+        appendCard(name1.value);
+        increaseDecrease();
     }
 }
 
@@ -170,7 +162,10 @@ function compareGuess2() {
         guessMessage2.innerText = 'Your Guess is Too Low';
     } else if (parseInt(guess2.value) === randomNumber) {
         guessMessage2.innerText = 'BOOM!!!';
+        appendCard(name2.value);
+        increaseDecrease();
     }
+    numberOfGuesses++;
 }
 
 function displayGuesses() {
@@ -195,7 +190,6 @@ function resetForm(e) {
 
 
 function appendCard(winnerName) {
-  console.log(winnerName);
     let card =
   `<article class="score-card">
     <p class="card-title">${scoreName1.innerText}<span> vs</span>
@@ -213,18 +207,6 @@ function appendCard(winnerName) {
     rightSide.innerHTML += card;
 }
 
-function appendWinner() {
-    if(randomNumber === parseInt(guess1.value)) {
-        appendCard(name1.value);
-        increaseDecrease();
-    }else if (randomNumber === parseInt(guess2.value)) {
-        appendCard(name2.value);
-        increaseDecrease();
-    }
-    numberOfGuesses++;
-}
-
-
 function increaseDecrease() {
     let newMin = parseInt(minRange.value) - 10;
     let newMax = parseInt(maxRange.value) + 10;
@@ -233,7 +215,7 @@ function increaseDecrease() {
         newMax = 100;
     }
     minRange.value = newMin;
-    maxRange.value =  newMax;
+    maxRange.value = newMax;
     currentMin.innerText = newMin;
     currentMax.innerText = newMax;
     getSolution(newMin, newMax);
