@@ -136,10 +136,9 @@ function displayGuesses() {
     scoreName2.innerText = name2.value;
     guessResult1.innerText = guess1.value;
     guessResult2.innerText = guess2.value;
-    // clearForm(guesses);
 }
 
-function compareGuess(player) {
+function compareGuess() {
     if (guess1.value > randomNumber) {
         guessMessage1.innerText = 'Your Guess is Too High';
     } else if (guess1.value < parseInt(randomNumber)) {
@@ -178,13 +177,13 @@ function appendCard(winnerName) {
     rightSide.innerHTML += card;
 }
 
-function appendWinner(e) {
+function appendWinner() {
     if(randomNumber === parseInt(guess1.value)) {
         appendCard(name1.value);
-        increaseDecrease(e);
-    } else if (randomNumber === parseInt(guess2.value)) {
+        increaseDecrease();
+    }else if (randomNumber === parseInt(guess2.value)) {
         appendCard(name2.value);
-        increaseDecrease(e);
+        increaseDecrease();
     }
     numberOfGuesses++;
 }
@@ -222,9 +221,14 @@ function findDelete(e) {
   }
 }
 
-function increaseDecrease(e) {
-    minRange.value = parseInt(minRange.value) - 10;
-    maxRange.value = parseInt(maxRange.value) + 10; 
-    setRange(e);
+function increaseDecrease() {
+    const newMin = parseInt(minRange.value) - 10;
+    const newMax = parseInt(maxRange.value) + 10;
+    minRange.value = newMin;
+    maxRange.value =  newMax;
+    currentMin.innerText = newMin;
+    currentMax.innerText = newMax;
+    getSolution(newMin, newMax);
+    clearForm(guesses);
 }
 
