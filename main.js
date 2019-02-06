@@ -23,11 +23,17 @@ var scoreName1 = document.querySelector('.score-name1');
 var scoreName2 = document.querySelector('.score-name2');
 var rightSide = document.querySelector('.right-column');
 var gameForm = document.querySelector('.game-form');
+// =========
+
+var guessResults = document.querySelectorAll('.guess-result');
 var guessResult1 = document.querySelector('.guess-result1');
 var guessResult2 = document.querySelector('.guess-result2');
 // var winnerCard = document.querySelector('.score-card');
 var guessMessage1 = document.querySelector('.guess-message1');
 var guessMessage2 = document.querySelector('.guess-message2');
+// =========
+var guessMessages = document.querySelectorAll('.guess-message');
+
 var numberOfGuesses = 1;
 var randomNumber = getSolution(1, 100);
 
@@ -76,7 +82,6 @@ function reverseErrorMessage(err, inputs) {
     });
 }
 
-
 function rangeFormInvalid() {
     event.preventDefault();
     clearForm([minRange, maxRange]);
@@ -106,27 +111,14 @@ function disableButtons() {
 
 function executeGame(e) {
     e.preventDefault();
+    // debugger
     validateGameForm();
     displayGuesses();
     compareGuess();
     compareGuess2();
     appendWinner(e);
-    clearForm(guesses);
     reverseErrorMessage(rangeErr, [minRange, maxRange]);
-}
-
-function validateGuess() {
-    guesses.forEach(function(guess) {
-        let min = parseInt(currentMin.innerText);
-        let max = parseInt(currentMax.innerText);
-        let guessVal = parseInt(guess.value);
-        guess.min = min;
-        guess.max = max;
-        if (guessVal < min || guessVal > max) {
-            gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
-            errorMessage(gameErr, guesses);
-        }
-    });
+    clearForm(guesses);
 }
 
 function validateGameForm(){
@@ -139,11 +131,27 @@ function validateGameForm(){
     validateGuess();
 }
 
+function validateGuess() {
+    guesses.forEach(function(guess) {
+        let min = parseInt(currentMin.innerText);
+        let max = parseInt(currentMax.innerText);
+        let guessVal = parseInt(guess.value);
+        guess.min = min;
+        guess.max = max;
+        if (guessVal < min || guessVal > max) {
+            gameErrMessage.innerText =`Guess must be between ${min} and ${max}`;
+            errorMessage(gameErr, guesses);
+            throw false;
+        }
+    });
+}
+
 function clearForm(inputs) {
     inputs.forEach(function(input){
         input.value = '';
     });
 }
+
 
 function compareGuess() {
     if (guess1.value > randomNumber) {
@@ -174,10 +182,8 @@ function displayGuesses() {
 
 function resetForm(e) {
     e.preventDefault();
-    inputFields.forEach(function(input){
-        input.value = '';
-        getSolution(1, 100);
-    });
+    clearForm(inputFields);
+    getSolution(1, 100);
     rightSide.innerHTML = '';
     guessResult1.innerText = '?';
     guessResult2.innerText = '?';
@@ -220,8 +226,12 @@ function appendWinner() {
 
 
 function increaseDecrease() {
-    const newMin = parseInt(minRange.value) - 10;
-    const newMax = parseInt(maxRange.value) + 10;
+    let newMin = parseInt(minRange.value) - 10;
+    let newMax = parseInt(maxRange.value) + 10;
+    if (minRange.value === '' || maxRange.value === '') {
+        newMin = 1;
+        newMax = 100;
+    }
     minRange.value = newMin;
     maxRange.value =  newMax;
     currentMin.innerText = newMin;
